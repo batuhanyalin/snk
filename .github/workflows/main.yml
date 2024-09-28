@@ -8,10 +8,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
+      
+      - uses: actions/setup-node@v4 # Güncellenmiş sürüm
         with:
           cache: yarn
           node-version: 20
+
       - run: yarn install --frozen-lockfile
 
       - run: npm run type
@@ -24,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
+      
       - name: update action.yml to use image from local Dockerfile
         run: |
           sed -i "s/image: .*/image: Dockerfile/" action.yml
@@ -46,7 +48,7 @@ jobs:
           test -f dist/github-contribution-grid-snake-dark.svg
           test -f dist/github-contribution-grid-snake.gif
 
-      - uses: crazy-max/ghaction-github-pages@v3.1.0
+      - uses: crazy-max/ghaction-github-pages@v3.1.1 # Güncellenmiş sürüm
         with:
           target_branch: output
           build_dir: dist
@@ -57,10 +59,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
+      
+      - uses: actions/setup-node@v4 # Güncellenmiş sürüm
         with:
           cache: yarn
           node-version: 20
+
       - run: yarn install --frozen-lockfile
 
       - name: build svg-only action
@@ -84,7 +88,7 @@ jobs:
           test -f dist/github-contribution-grid-snake.svg
           test -f dist/github-contribution-grid-snake-dark.svg
 
-      - uses: crazy-max/ghaction-github-pages@v3.1.0
+      - uses: crazy-max/ghaction-github-pages@v3.1.1 # Güncellenmiş sürüm
         with:
           target_branch: output-svg-only
           build_dir: dist
@@ -95,17 +99,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
+      
+      - uses: actions/setup-node@v4 # Güncellenmiş sürüm
         with:
           cache: yarn
           node-version: 20
+
       - run: yarn install --frozen-lockfile
 
       - run: npm run build:demo
         env:
           GITHUB_USER_CONTRIBUTION_API_ENDPOINT: https://snk-one.vercel.app/api/github-user-contribution/
 
-      - uses: crazy-max/ghaction-github-pages@v3.1.0
+      - uses: crazy-max/ghaction-github-pages@v3.1.1 # Güncellenmiş sürüm
         if: success() && github.ref == 'refs/heads/main'
         with:
           target_branch: gh-pages
